@@ -21,10 +21,11 @@ func Add(tx *sql.Tx, e *EventInfo) error {
 		State:      0,
 		RetryCnt:   0,
 		CreateTime: CurMs(),
-		UpdateTime: CurMs(),
+		UpdateTime: 0,
 	}
-	_, err := tx.Exec(`insert into dt_event value (?, ?, ?, ?, ?, ?, ?, ?)`,
-		de.EventId, de.EventKey, de.EventType, de.Param, de.State, de.RetryCnt, de.CreateTime, de.UpdateTime)
+	_, err := tx.Exec(`insert into dt_event (event_id, event_key, event_type, param, state, 
+        retry_cnt, create_time, update_time) value (?, ?, ?, ?, ?, ?, ?, ?)`, de.EventId, de.EventKey,
+        de.EventType, de.Param, de.State, de.RetryCnt, de.CreateTime, de.UpdateTime)
 	if err != nil {
 		return fmt.Errorf("insert dt_event err: %v", err)
 	}
