@@ -9,9 +9,9 @@ import (
 	"time"
 )
 
-//create database dtdb
+//create database mndb
 func main() {
-	db, err := sql.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/dtdb")
+	db, err := sql.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/mndb")
 	if err != nil {
 		fmt.Printf("[ERRO] sql.Open failed err=%v\n", err)
 		return
